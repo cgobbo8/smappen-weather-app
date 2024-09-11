@@ -27,5 +27,7 @@ coverage
 *.sln
 *.sw?
 *.iml
+modules.xml
+meteo-bue.iml
 
 *.tsbuildinfo

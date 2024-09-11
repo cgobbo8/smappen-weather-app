@@ -1,6 +1,39 @@
-# meteo-vue
+# smappen-weather-app
 
-This template should help get you started developing with Vue 3 in Vite.
+Weather app using `openweather`, `openstreetmap`, `leaflet` and `pelias.smappen.com` APIs
+
+To configure the project, please add your openweather API KEY in the `.env` or `.env.local` file.
+
+Note : 
+> ###### Note :
+> I didn’t have access to the paid part of the OpenWeather API, 
+> so I couldn’t retrieve the forecast for the coming days. 
+> 
+> Therefore, the dedicated block in the application uses a calculation to determine the minimum and maximum temperatures 
+> for each day via the endpoint: https://api.openweathermap.org/data/2.5/forecast. 
+> 
+> Calculation method: `useCityStore:forecastDaysWithIconListReducerCb`
+
+
+## Screenshot of the app (Dynamic wallpaper)
+
+#### Sunny weather
+![Sunny weather](./readme-files/sunny.png)
+
+#### Cloudy Weather
+![Cloudy weather](./readme-files/cloudy.png)
+
+#### Rainy Weather
+![Rainy Weather](./readme-files/rainy.png)
+
+#### Cloudy Night Weather
+![Cloudy Night Weather](./readme-files/cloudy-night.png)
+
+#### Clear Night Weather
+![Clear Night Weather](./readme-files/clear-night.png)
+
+
+# Config
 
 ## Recommended IDE Setup
 
