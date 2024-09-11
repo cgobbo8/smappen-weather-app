@@ -15,7 +15,9 @@ import SupportIcon from './icons/IconSupport.vue'
     <template #heading>Documentation</template>
 
     Vue’s
-    <a class="text-blue-800" href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
+    <a class="text-blue-800" href="https://vuejs.org/" target="_blank" rel="noopener"
+      >official documentation</a
+    >
     provides you with all information you need to get started.
   </WelcomeItem>
 
