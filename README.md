@@ -26,6 +26,9 @@ Note :
 #### Rainy Weather (with lighting animation)
 ![Rainy Weather](./readme-files/rainy.png)
 
+#### Snow Weather
+![Rainy Weather](./readme-files/snow.png)
+
 #### Clear Night Weather
 ![Clear Night Weather](./readme-files/clear-night.png)
 
@@ -35,6 +38,8 @@ Note :
 #### Rainy Night Weather
 ![Cloudy Night Weather](./readme-files/rainy-night.png)
 
+#### Snow Weather at night
+![Rainy Weather](./readme-files/snow-night.png)
 
 
 # Config
