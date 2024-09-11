@@ -62,3 +62,32 @@ export function getWeatherType(weatherIcon?: string): WEATHER_TYPE {
       return WEATHER_TYPE.CLOUDY
   }
 }
+
+export const getDayShort = (date: string) =>
+  new Date(date).toLocaleDateString('en-US', { weekday: 'short' })
+
+export const getMostUsedIcon = (icons: string[]) =>
+  Array.from(new Set(icons)).reduce((prev, curr) =>
+    icons.filter((el) => el === curr).length > icons.filter((el) => el === prev).length
+      ? curr
+      : prev
+  )
+
+export const computeHueWithTemperature = (temp: number) => {
+  const maxTemp = 35
+  const minTemp = 0
+  const maxRange = 0
+  const minRange = 250
+
+  if (temp < minTemp) return minRange
+  if (temp > maxTemp) return maxRange
+
+  return ((temp - minTemp) * (maxRange - minRange)) / (maxTemp - minTemp) + minRange
+}
+
+export function getTimeWithTimezone(offsetInSeconds: number) {
+  const newOffset = offsetInSeconds - 7200 // 2 hours
+  const nowUTC = new Date().getTime()
+  const localTime = new Date(nowUTC + newOffset * 1000)
+  return new Date(localTime.toUTCString())
+}

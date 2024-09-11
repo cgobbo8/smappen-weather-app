@@ -2,7 +2,7 @@
   <div
     class="absolute top-0 left-0 -z-10 h-full w-screen overflow-hidden bg-red-400 bg-gradient-to-b from-sky-900 to-sky-600 from-20%"
   >
-<!--  <div class="text-8xl text-white"> {{sunRotation}}</div>-->
+    <!--  <div class="text-8xl text-white"> {{sunRotation}}</div>-->
     <div
       class="absolute top-0 left-0 h-full w-full bg-black"
       :style="{ opacity: nightLayerValue }"
@@ -11,7 +11,7 @@
     <lottie-animation
       v-if="weatherType === WEATHER_TYPE.RAINY || weatherType === WEATHER_TYPE.THUNDER"
       class="h-full top-0 bg-gray-400/50 absolute scale-[300%] opacity-20"
-      path="../../src/assets/rain-lottie.json"
+      path="../../src/assets/lottie/rain-lottie.json"
       :speed="0.6"
       :loop="true"
       :auto-play="true"
@@ -19,7 +19,7 @@
 
     <img
       :style="{ opacity: nightLayerValue }"
-      src="/src/assets/background-space.png"
+      src="/src/assets/images/background-space.png"
       alt="background space"
     />
     <div
@@ -54,11 +54,14 @@
       ></div>
     </div>
 
-    <div v-if="
+    <div
+      v-if="
         weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
         weatherType === WEATHER_TYPE.CLOUDY
-      " class="absolute w-full left-0 to-[10%] bg-gray-500 blur-2xl h-20"></div>
+      "
+      class="absolute w-full left-0 to-[10%] bg-gray-500 blur-2xl h-20"
+    ></div>
 
     <div
       v-if="
@@ -67,10 +70,7 @@
         weatherType === WEATHER_TYPE.CLOUDY
       "
       class="absolute top-0 left-0 h-full w-screen bg-gray-500 opacity-20"
-    >
-    </div>
-
-
+    ></div>
 
     <template
       v-if="

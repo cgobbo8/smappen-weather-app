@@ -71,3 +71,18 @@ export type Coord = {
   lat: number
   lon: number
 }
+
+export type ForecastUi = {
+  day: string
+  date: string
+  minTemp: number
+  maxTemp: number
+  icons: string[]
+}
+export type ForecastUiWithIcon = ForecastUi & {
+  mostFrequentIcon: string
+  minTempHue: number
+  maxTempHue: number
+  minTempHslClass: string
+  maxTempHslClass: string
+}

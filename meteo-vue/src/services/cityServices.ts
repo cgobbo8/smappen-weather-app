@@ -1,7 +1,7 @@
 import type { City } from '@/types/city'
 import type { FeatureCollection } from '@/types/featureCollection'
 import type { Weather } from '@/types/weather'
-import type { WeatherForecast, WeatherResponse } from '@/types/forecast'
+import type { WeatherResponse } from '@/types/forecast'
 
 export async function getCities(query: string): Promise<City[]> {
   const featureCollection = await fetch(
@@ -25,10 +25,10 @@ export async function getWeather(
 ): Promise<{ currentWeather: Weather; forecastWeather: WeatherResponse }> {
   const [currentWeather, forecastWeather] = await Promise.all([
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=65212b3d0f894936542704a703a7b0f3&units=metric`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${city.lat}&lon=${city.lon}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&units=metric`
     ).then((res) => res.json() as Promise<Weather>),
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=65212b3d0f894936542704a703a7b0f3&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${city.lat}&lon=${city.lon}&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}&units=metric`
     ).then((res) => res.json() as Promise<WeatherResponse>)
   ])
 
@@ -43,6 +43,6 @@ export async function getCountryByLatLon({
   lon: number
 }): Promise<[City]> {
   return await fetch(
-    `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=65212b3d0f894936542704a703a7b0f3`
+    `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${import.meta.env.VITE_OPENWEATHER_API_KEY}`
   ).then((res) => res.json())
 }

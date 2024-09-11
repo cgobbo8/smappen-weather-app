@@ -1,13 +1,10 @@
-// Type pour les coordonnées géographiques
 export type Coordinates = [number, number]
 
-// Type pour la géométrie de chaque feature
 export type Geometry = {
   type: 'Point'
   coordinates: Coordinates
 }
 
-// Type pour les informations supplémentaires dans "addendum"
 export type Addendum = {
   geonames?: {
     feature_code: string
@@ -24,7 +21,6 @@ export type Addendum = {
   }
 }
 
-// Type pour les propriétés d'une feature
 export type Properties = {
   id: string
   gid: string
@@ -60,7 +56,6 @@ export type Properties = {
   addendum?: Addendum
 }
 
-// Type pour chaque feature
 export type Feature = {
   type: 'Feature'
   geometry: Geometry
@@ -68,14 +63,12 @@ export type Feature = {
   bbox?: [number, number, number, number]
 }
 
-// Type pour les informations de l'engin de géocodage
 export type Engine = {
   name: string
   author: string
   version: string
 }
 
-// Type pour la langue utilisée dans la requête
 export type Lang = {
   name: string
   iso6391: string
@@ -84,7 +77,6 @@ export type Lang = {
   defaulted: boolean
 }
 
-// Type pour la requête du géocodage
 export type Query = {
   text: string
   parser: string
@@ -98,7 +90,6 @@ export type Query = {
   querySize: number
 }
 
-// Type pour le geocoding
 export type Geocoding = {
   version: string
   attribution: string
@@ -108,7 +99,6 @@ export type Geocoding = {
   timestamp: number
 }
 
-// Type pour la collection de features
 export type FeatureCollection = {
   type: string
   geocoding: Geocoding

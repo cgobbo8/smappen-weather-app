@@ -1,5 +1,13 @@
 {
+  "noImplicitAny": false,
+  "allowJs": true,
   "files": [],
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": { "@/*":["./src/*"] }
+  },
+  "exclude": ["node_modules"],
   "references": [
     {
       "path": "./tsconfig.node.json"
