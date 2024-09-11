@@ -1,5 +1,9 @@
 @import 'base.css';
 
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(16px);
+}
+
 a,
 .green {
   text-decoration: none;
