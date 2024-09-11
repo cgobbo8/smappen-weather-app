@@ -71,7 +71,7 @@ const nightLayerValue = computed(() => {
   <div
     class="absolute top-0 left-0 -z-10 h-full w-screen overflow-hidden bg-red-400 bg-gradient-to-b from-sky-900 to-sky-600 from-20%"
   >
-    <!--  <div class="text-8xl text-white"> {{sunRotation}}</div>-->
+    <div class="text-8xl text-white">{{ sunRotation }}</div>
     <div
       class="absolute top-0 left-0 h-full w-full bg-black"
       :style="{ opacity: nightLayerValue }"
@@ -101,29 +101,6 @@ const nightLayerValue = computed(() => {
     ></div>
 
     <div
-      id="sunContainer"
-      v-if="sunRotation !== -1"
-      class="absolute left-1/2 aspect-square w-[80%]"
-      :style="{ transform: `translateX(-50%) rotate(${Math.round(sunRotation)}deg)` }"
-    >
-      <div
-        id="sun"
-        class="absolute top-1/2 left-0 -translate-y-1/2 rounded-full bg-yellow-100 blur-xl size-20 md:size-60 md:blur-3xl"
-      ></div>
-    </div>
-    <div
-      id="moonContainer"
-      v-if="moonRotation !== -1"
-      class="absolute left-1/2 aspect-square w-[80%]"
-      :style="{ transform: `translateX(-50%) rotate(${moonRotation}deg)` }"
-    >
-      <div
-        id="sun"
-        class="absolute top-1/2 left-0 -translate-y-1/2 rounded-full bg-white blur-xl size-20 md:size-40 md:blur-3xl"
-      ></div>
-    </div>
-
-    <div
       v-if="
         weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
@@ -131,6 +108,26 @@ const nightLayerValue = computed(() => {
       "
       class="absolute w-full left-0 to-[10%] bg-gray-500 blur-2xl h-20"
     ></div>
+
+    <div
+      v-if="sunRotation !== -1"
+      class="absolute top-0 left-1/2 w-[80%] aspect-square"
+      :style="{ transform: `translateX(-50%) rotate(${sunRotation}deg)` }"
+    >
+      <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 rounded-full bg-white blur-xl size-20 md:size-40 md:blur-3xl"
+      ></div>
+    </div>
+
+    <div
+      v-if="moonRotation !== -1"
+      class="absolute top-0 left-1/2 w-[80%] aspect-square"
+      :style="{ transform: `translateX(-50%) rotate(${moonRotation}deg)` }"
+    >
+      <div
+        class="absolute top-1/2 left-0 -translate-y-1/2 rounded-full bg-white blur-md size-20 md:size-40 md:blur-3xl"
+      ></div>
+    </div>
 
     <div
       v-if="

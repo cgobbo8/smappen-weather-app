@@ -45,8 +45,10 @@ watch(
   }
 )
 
-const dispatchLatLonChange = (event: { latlng: { lat: number; lng: number } }) => {
-  cityStore.dispatchLatLonChange({ lat: event.latlng.lat, lon: event.latlng.lng })
+const dispatchLatLonChange = (event: {
+  latlng: { lat: number; lng: number; wrap: () => { lat: number; lng: number } }
+}) => {
+  cityStore.dispatchLatLonChange({ lat: event.latlng.wrap().lat, lon: event.latlng.wrap().lng })
 }
 
 const isDarkMap = computed(() => {
