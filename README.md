@@ -18,19 +18,23 @@ Note :
 ## Screenshot of the app (Dynamic wallpaper)
 
 #### Sunny weather
-![Sunny weather](./readme-files/sunny.png)
+![Sunny weather](./readme-files/clear.png)
 
 #### Cloudy Weather
 ![Cloudy weather](./readme-files/cloudy.png)
 
-#### Rainy Weather
+#### Rainy Weather (with lighting animation)
 ![Rainy Weather](./readme-files/rainy.png)
+
+#### Clear Night Weather
+![Clear Night Weather](./readme-files/clear-night.png)
 
 #### Cloudy Night Weather
 ![Cloudy Night Weather](./readme-files/cloudy-night.png)
 
-#### Clear Night Weather
-![Clear Night Weather](./readme-files/clear-night.png)
+#### Rainy Night Weather
+![Cloudy Night Weather](./readme-files/rainy-night.png)
+
 
 
 # Config
