@@ -1,3 +1,72 @@
+<script setup>
+import { computed } from 'vue'
+import { useCityStore } from '../stores/useCityStore.ts'
+import {
+  getWeatherType,
+  interpolate,
+  interpolateCircularInverse,
+  WEATHER_TYPE
+} from '../utils/index.ts'
+import LottieAnimation from 'lottie-vuejs/src/LottieAnimation.vue'
+
+const cityStore = useCityStore()
+
+const hour = computed(() => {
+  let date = cityStore.currentTime ?? new Date()
+  let hour = date.toLocaleTimeString('fr-FR', { hour: 'numeric' })
+  return Number(hour.toLocaleLowerCase().replace(' h', ''))
+})
+
+const weatherType = computed(() => getWeatherType(cityStore.selectedCity?.weather?.weather[0].icon))
+const moonRotation = computed(() => {
+  if (hour.value > 8 && hour.value < 20) return -1
+
+  if (hour.value === 8) return 180
+
+  return (
+    180 -
+    interpolateCircularInverse({
+      value: hour.value,
+      minInput: 8, // morning
+      maxInput: 20, // night
+      minOutput: 90,
+      maxOutput: 180
+    })
+  )
+})
+
+const sunRotation = computed(() => {
+  if (moonRotation.value !== -1) return -1
+  if (hour.value < 8 || hour.value > 20) return -1
+
+  return interpolate({
+    value: hour.value,
+    minInput: 8, // morning
+    maxInput: 20, // night
+    minOutput: 90,
+    maxOutput: 180
+  })
+})
+const nightLayerValue = computed(() => {
+  if (hour.value > 22 || hour.value < 6) return 0.8
+  if (hour.value > 10 && hour.value < 18) return 0
+
+  if (hour.value >= 18 && hour.value <= 22) {
+    return (
+      interpolate({
+        value: hour.value,
+        minInput: 18, // morning
+        maxInput: 22, // night
+        minOutput: 0,
+        maxOutput: 100
+      }) / 100
+    )
+  }
+
+  return 0.2
+})
+</script>
+
 <template>
   <div
     class="absolute top-0 left-0 -z-10 h-full w-screen overflow-hidden bg-red-400 bg-gradient-to-b from-sky-900 to-sky-600 from-20%"
@@ -97,75 +166,6 @@
     </template>
   </div>
 </template>
-
-<script setup>
-import { computed } from 'vue'
-import { useCityStore } from '../stores/useCityStore.ts'
-import {
-  getWeatherType,
-  interpolate,
-  interpolateCircularInverse,
-  WEATHER_TYPE
-} from '../utils/index.ts'
-import LottieAnimation from 'lottie-vuejs/src/LottieAnimation.vue'
-
-const cityStore = useCityStore()
-
-const hour = computed(() => {
-  let date = cityStore.currentTime ?? new Date()
-  let hour = date.toLocaleTimeString('fr-FR', { hour: 'numeric' })
-  return Number(hour.toLocaleLowerCase().replace(' h', ''))
-})
-
-const weatherType = computed(() => getWeatherType(cityStore.selectedCity?.weather?.weather[0].icon))
-const moonRotation = computed(() => {
-  if (hour.value > 8 && hour.value < 20) return -1
-
-  if (hour.value === 8) return 180
-
-  return (
-    180 -
-    interpolateCircularInverse({
-      value: hour.value,
-      minInput: 8, // morning
-      maxInput: 20, // night
-      minOutput: 90,
-      maxOutput: 180
-    })
-  )
-})
-
-const sunRotation = computed(() => {
-  if (moonRotation.value !== -1) return -1
-  if (hour.value < 8 || hour.value > 20) return -1
-
-  return interpolate({
-    value: hour.value,
-    minInput: 8, // morning
-    maxInput: 20, // night
-    minOutput: 90,
-    maxOutput: 180
-  })
-})
-const nightLayerValue = computed(() => {
-  if (hour.value > 22 || hour.value < 6) return 0.8
-  if (hour.value > 10 && hour.value < 18) return 0
-
-  if (hour.value >= 18 && hour.value <= 22) {
-    return (
-      interpolate({
-        value: hour.value,
-        minInput: 18, // morning
-        maxInput: 22, // night
-        minOutput: 0,
-        maxOutput: 100
-      }) / 100
-    )
-  }
-
-  return 0.2
-})
-</script>
 
 <style scoped>
 .cloud {

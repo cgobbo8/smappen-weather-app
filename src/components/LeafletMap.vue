@@ -1,3 +1,30 @@
+<template>
+  <div
+    class="rounded-lg overflow-hidden w-full aspect-square md:aspect-video"
+    :style="{ filter: isDarkMap ? 'invert(1) hue-rotate(180deg) grayscale(0.7)' : '' }"
+  >
+    <l-map
+      ref="map"
+      :zoom="10"
+      :useGlobalLeaflet="false"
+      v-model:center="mapPosition"
+      @click="dispatchLatLonChange"
+    >
+      <l-control-layers />
+      <l-marker
+        v-if="cityStore.currentLatLon"
+        :lat-lng="[cityStore.currentLatLon.lat, cityStore.currentLatLon.lon]"
+      ></l-marker>
+
+      <l-tile-layer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        layer-type="base"
+        name="OpenStreetMap"
+      ></l-tile-layer>
+    </l-map>
+  </div>
+</template>
+
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
 import { LControlLayers, LMap, LMarker, LTileLayer } from '@vue-leaflet/vue-leaflet'
@@ -29,32 +56,3 @@ const isDarkMap = computed(() => {
   return hourNum < 6 || hourNum > 22
 })
 </script>
-
-<template>
-  <div
-    class="rounded-lg overflow-hidden w-full aspect-square md:aspect-video"
-    :style="{ filter: isDarkMap ? 'invert(1) hue-rotate(180deg) grayscale(0.7)' : '' }"
-  >
-    <l-map
-      ref="map"
-      :zoom="10"
-      :useGlobalLeaflet="false"
-      v-model:center="mapPosition"
-      @click="dispatchLatLonChange"
-    >
-      <l-control-layers />
-      <l-marker
-        v-if="cityStore.currentLatLon"
-        :lat-lng="[cityStore.currentLatLon.lat, cityStore.currentLatLon.lon]"
-      ></l-marker>
-
-      <l-tile-layer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        layer-type="base"
-        name="OpenStreetMap"
-      ></l-tile-layer>
-    </l-map>
-  </div>
-</template>
-
-<style scoped></style>

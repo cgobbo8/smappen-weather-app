@@ -1,3 +1,9 @@
+<script setup>
+import { useCityStore } from '../stores/useCityStore.ts'
+
+const cityStore = useCityStore()
+</script>
+
 <template>
   <div
     class="col-span-3 lg:col-span-1 h-full bg-gray-800/20 backdrop-blur-xl border border-gray-100/10 rounded-lg"
@@ -7,13 +13,19 @@
     </div>
     <ul class="mt-4 flex flex-col">
       <li v-for="(forecast, index) in cityStore.forecastNextDays" :key="forecast.day" class="">
-        <div class="flex items-center justify-between mx-4 py-2 border-b border-gray-100/20" :class="{'pt-0': index === 0, 'border-b-0' : index === cityStore.forecastNextDays?.length - 1}">
+        <div
+          class="flex items-center justify-between mx-4 py-2 border-b border-gray-100/20"
+          :class="{
+            'pt-0': index === 0,
+            'border-b-0': index === cityStore.forecastNextDays?.length - 1
+          }"
+        >
           <div class="font-bold text-white w-10">{{ forecast.day }}.</div>
           <div class="w-10 grid place-items-center">
             <img
-                class="size-8"
-                :src="`https://openweathermap.org/img/wn/${forecast.mostFrequentIcon}@2x.png`"
-                alt="weather_icon"
+              class="size-8"
+              :src="`https://openweathermap.org/img/wn/${forecast.mostFrequentIcon}@2x.png`"
+              alt="weather_icon"
             />
           </div>
 
@@ -34,9 +46,3 @@
     </ul>
   </div>
 </template>
-
-<script setup>
-import {useCityStore} from '../stores/useCityStore.ts'
-
-const cityStore = useCityStore()
-</script>

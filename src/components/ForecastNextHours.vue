@@ -1,3 +1,9 @@
+<script setup>
+import { useCityStore } from '../stores/useCityStore.ts'
+
+const cityStore = useCityStore()
+</script>
+
 <template>
   <div
     v-if="cityStore"
@@ -36,9 +42,3 @@
     </ul>
   </div>
 </template>
-
-<script setup>
-import { useCityStore } from '../stores/useCityStore.ts'
-
-const cityStore = useCityStore()
-</script>

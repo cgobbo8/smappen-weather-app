@@ -33,7 +33,7 @@ const closePanel = () => {
 }
 
 const selectCity = (city: City) => {
-  city.locality = city.name;
+  city.locality = city.name
   cityStore.dispatchSelectCity(city)
   inputValue.value = ''
   closePanel()
@@ -65,8 +65,7 @@ const selectCity = (city: City) => {
           :key="city.name + i"
           class="p-2 text-gray-200 hover:bg-gray-500 cursor-pointer"
           :class="{
-            'border-b border-gray-700':
-              i !== cityStore.loadedCities.length - 1
+            'border-b border-gray-700': i !== cityStore.loadedCities.length - 1
           }"
         >
           {{ city.label }}

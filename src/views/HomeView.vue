@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import CountryInput from '@/components/CountryInput.vue'
-import Map from '@/components/Map.vue'
+import Map from '@/components/LeafletMap.vue'
 import CurrentWeather from '@/components/CurrentWeather.vue'
 import { useCityStore } from '@/stores/useCityStore'
-import Wallpaper from '@/components/Wallpaper.vue'
+import Wallpaper from '@/components/DynamicWallpaper.vue'
 import ForecastNextDays from '@/components/ForecastNextDays.vue'
 import ForecastNextHours from '@/components/ForecastNextHours.vue'
 

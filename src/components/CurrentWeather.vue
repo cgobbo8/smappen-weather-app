@@ -1,3 +1,9 @@
+<script setup>
+import { useCityStore } from '../stores/useCityStore.ts'
+
+const cityStore = useCityStore()
+</script>
+
 <template>
   <div id="temperature" v-if="cityStore.selectedCity" class="w-full">
     <div id="city" class="flex-col items-center justify-center">
@@ -19,14 +25,10 @@
         :src="`https://openweathermap.org/img/wn/${cityStore.selectedCity?.weather?.weather?.[0]?.icon}@2x.png`"
         alt="weather_icon"
       />
-      <div class="capitalize text-gray-200/60">{{ cityStore.selectedCity?.weather?.weather?.[0]?.description }}</div>
+      <div class="capitalize text-gray-200/60">
+        {{ cityStore.selectedCity?.weather?.weather?.[0]?.description }}
+      </div>
     </div>
   </div>
   <div v-else class="text-center text-3xl text-gray-600">Please enter a city</div>
 </template>
-
-<script setup>
-import { useCityStore } from '../stores/useCityStore.ts'
-
-const cityStore = useCityStore()
-</script>
