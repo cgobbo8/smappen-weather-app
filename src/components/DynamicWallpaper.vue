@@ -1,12 +1,7 @@
 <script setup>
-import { computed } from 'vue'
-import { useCityStore } from '../stores/useCityStore.ts'
-import {
-  getWeatherType,
-  interpolate,
-  interpolateCircularInverse,
-  WEATHER_TYPE
-} from '../utils/index.ts'
+import {computed} from 'vue'
+import {useCityStore} from '../stores/useCityStore.ts'
+import {getWeatherType, interpolate, interpolateCircularInverse, WEATHER_TYPE} from '../utils/index.ts'
 import LottieAnimation from 'lottie-vuejs/src/LottieAnimation.vue'
 
 const cityStore = useCityStore()
@@ -71,7 +66,6 @@ const nightLayerValue = computed(() => {
   <div
     class="absolute top-0 left-0 -z-10 h-full w-screen overflow-hidden bg-red-400 bg-gradient-to-b from-sky-900 to-sky-600 from-20%"
   >
-    <div class="text-8xl text-white">{{ sunRotation }}</div>
     <div
       class="absolute top-0 left-0 h-full w-full bg-black"
       :style="{ opacity: nightLayerValue }"
