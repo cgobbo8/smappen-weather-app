@@ -38,7 +38,8 @@ export enum WEATHER_TYPE {
   CLEAR = 'CLEAR',
   CLOUDY = 'CLOUDY',
   RAINY = 'RAINY',
-  THUNDER = 'THUNDER'
+  THUNDER = 'THUNDER',
+  SNOW = 'SNOW'
 }
 
 export function getWeatherType(weatherIcon?: string): WEATHER_TYPE {
@@ -58,6 +59,8 @@ export function getWeatherType(weatherIcon?: string): WEATHER_TYPE {
       return WEATHER_TYPE.RAINY
     case '11':
       return WEATHER_TYPE.THUNDER
+    case '13':
+      return WEATHER_TYPE.SNOW
     default:
       return WEATHER_TYPE.CLOUDY
   }

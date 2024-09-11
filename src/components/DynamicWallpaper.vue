@@ -66,11 +66,13 @@ const nightLayerValue = computed(() => {
   <div
     class="absolute top-0 left-0 -z-10 h-full w-screen overflow-hidden bg-red-400 bg-gradient-to-b from-sky-900 to-sky-600 from-20%"
   >
+    <!--    NIGHT -->
     <div
       class="absolute top-0 left-0 h-full w-full bg-black"
       :style="{ opacity: nightLayerValue }"
     ></div>
 
+    <!--    RAIN -->
     <lottie-animation
       v-if="weatherType === WEATHER_TYPE.RAINY || weatherType === WEATHER_TYPE.THUNDER"
       class="h-full top-0 bg-gray-400/50 absolute scale-[300%] opacity-20"
@@ -80,11 +82,14 @@ const nightLayerValue = computed(() => {
       :auto-play="true"
     />
 
+    <!--    STARS (NIGHT) -->
     <img
       :style="{ opacity: nightLayerValue }"
       src="/src/assets/images/background-space.png"
       alt="background space"
     />
+
+    <!--    THUNDER -->
     <div
       v-if="weatherType === WEATHER_TYPE.THUNDER"
       class="absolute top-0 left-0 h-full w-full bg-white lightning"
@@ -98,11 +103,13 @@ const nightLayerValue = computed(() => {
       v-if="
         weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
+        weatherType === WEATHER_TYPE.SNOW ||
         weatherType === WEATHER_TYPE.CLOUDY
       "
       class="absolute w-full left-0 to-[10%] bg-gray-500 blur-2xl h-20"
     ></div>
 
+    <!--    SUN -->
     <div
       v-if="sunRotation !== -1"
       class="absolute top-0 left-1/2 w-[80%] aspect-square"
@@ -113,6 +120,7 @@ const nightLayerValue = computed(() => {
       ></div>
     </div>
 
+    <!--    MOON -->
     <div
       v-if="moonRotation !== -1"
       class="absolute top-0 left-1/2 w-[80%] aspect-square"
@@ -123,10 +131,12 @@ const nightLayerValue = computed(() => {
       ></div>
     </div>
 
+    <!--    CLOUDS -->
     <div
       v-if="
         weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
+        weatherType === WEATHER_TYPE.SNOW ||
         weatherType === WEATHER_TYPE.CLOUDY
       "
       class="absolute top-0 left-0 h-full w-screen bg-gray-500 opacity-20"
@@ -136,14 +146,15 @@ const nightLayerValue = computed(() => {
       v-if="
         weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
+        weatherType === WEATHER_TYPE.SNOW ||
         weatherType === WEATHER_TYPE.CLOUDY
       "
     >
       <div
-        v-for="(_, index) in Array.from({ length: 20 })"
-        :key="index"
+        v-for="(_, cloudIdx) in Array.from({ length: 20 })"
+        :key="cloudIdx"
         class="absolute top-10 left-10 h-40 w-96 blur-2xl cloud"
-        :class="`cloud-${index + 1}`"
+        :class="`cloud-${cloudIdx + 1}`"
         :style="{ opacity: Math.round(Math.random() * 10) / 10 }"
       >
         <div
@@ -155,6 +166,25 @@ const nightLayerValue = computed(() => {
         <div></div>
       </div>
     </template>
+
+    <!--    SNOW -->
+    <div
+      v-if="sunRotation !== -1 && weatherType === WEATHER_TYPE.SNOW"
+      class="absolute top-0 left-0 h-full w-full bg-white opacity-20"
+    ></div>
+
+    <div
+      v-if="moonRotation !== -1 && weatherType === WEATHER_TYPE.SNOW"
+      class="absolute top-0 left-0 h-full w-full bg-gray-400/40 opacity-20"
+    ></div>
+
+    <div v-if="weatherType === WEATHER_TYPE.SNOW" class="snowflake_container">
+      <div
+        v-for="(_, snowIdx) in Array.from({ length: 100 })"
+        :key="snowIdx"
+        class="snowflake"
+      ></div>
+    </div>
   </div>
 </template>
 
