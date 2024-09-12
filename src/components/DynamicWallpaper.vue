@@ -142,12 +142,14 @@ const nightLayerValue = computed(() => {
       class="absolute top-0 left-0 h-full w-screen bg-gray-500 opacity-20"
     ></div>
 
-    <template
-      v-if="
-        weatherType === WEATHER_TYPE.RAINY ||
+    <div
+        class="opacity-0"
+
+      :class="
+        {'opacity-100': weatherType === WEATHER_TYPE.RAINY ||
         weatherType === WEATHER_TYPE.THUNDER ||
         weatherType === WEATHER_TYPE.SNOW ||
-        weatherType === WEATHER_TYPE.CLOUDY
+        weatherType === WEATHER_TYPE.CLOUDY}
       "
     >
       <div
@@ -158,14 +160,14 @@ const nightLayerValue = computed(() => {
         :style="{ opacity: Math.round(Math.random() * 10) / 10 }"
       >
         <div
-          class="absolute top-1/2 left-1/2 h-40 w-80 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-gray-600 to-gray-900"
+          class="absolute top-1/2 left-1/2 h-40 w-80 transition ease-in -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-gray-600 to-gray-900"
         ></div>
         <div
           class="absolute top-1/2 left-1/2 h-20 w-40 -translate-y-1/2 bg-gradient-to-b from-gray-600 to-gray-900 translate-x-[40%]"
         ></div>
         <div></div>
       </div>
-    </template>
+    </div>
 
     <!--    SNOW -->
     <div

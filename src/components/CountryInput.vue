@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useCityStore } from '@/stores/useCityStore'
-import { useDebounceFn } from '@vueuse/core'
-import type { City } from '@/types/city'
+import {ref, watch} from 'vue'
+import {useCityStore} from '@/stores/useCityStore'
+import {useDebounceFn} from '@vueuse/core'
+import type {City} from '@/types/city'
 
 const cityStore = useCityStore()
 
@@ -56,7 +56,7 @@ const selectCity = (city: City) => {
       @blur="closePanel"
       data-panel
       tabindex="0"
-      class="scrollbar-none absolute top-[calc(100%+1rem)] max-h-60 overflow-x-scroll bg-gray-800/40 backdrop-blur-xl shadow-xl w-full rounded-md"
+      class="scrollbar-none absolute top-[calc(100%+1rem)] max-h-56 overflow-x-scroll bg-gray-800/40 backdrop-blur-xl shadow-xl w-full rounded-md"
     >
       <ul class="overflow-y-auto h-full">
         <li
